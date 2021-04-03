@@ -9,4 +9,4 @@ class SkillSerializer(serializers.ModelSerializer):
 class SubSkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubSkill
-        fields = ('id', 'title', 'description', 'rating')
+        fields = ('id', 'title', 'description', 'skills', 'stars')
