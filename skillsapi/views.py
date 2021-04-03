@@ -12,12 +12,18 @@ class SkillsViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['POST'])
     def rate_skill(self, request, pk=None):
-        response = {'message': 'its working'}
-        return Response(response, status=status.HTTP_200_OK)
+        if 'title' in request.data:
+
+            skill = Skill.objects.get(id=pk)
+            print('Skill title', skill.title)
+            response = {'message': 'its working'}
+            return Response(response, status=status.HTTP_200_OK)
+        else:
+            response = {'message': 'You need to provide stars'}
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
 class SubSkillsViewSet(viewsets.ModelViewSet):
     queryset = SubSkill.objects.all()
     serializer_class = SubSkillSerializer
-
 
 
