@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from rest_framework.response import Response
+from django.http import HttpResponse
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from django.contrib.auth.models import User
 from .models import Skill, SubSkill
 from .serializers import SkillSerializer, SubSkillSerializer
+import requests
 
 # Create your views here.
 class SkillsViewSet(viewsets.ModelViewSet):
@@ -35,3 +37,8 @@ class SubSkillsViewSet(viewsets.ModelViewSet):
     serializer_class = SubSkillSerializer
 
 
+def pokemon(request):
+    response = requests.get('https://pokeapi.co/api/v2/pokemon/ditto/')
+    pokemon = response.json()
+    print(pokemon['abilities'])
+    return HttpResponse(pokemon['abilities'])
