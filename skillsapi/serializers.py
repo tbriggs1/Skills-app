@@ -6,6 +6,7 @@ class SkillSerializer(serializers.ModelSerializer):
         model = Skill
         fields = ('id', 'title', 'subSkill', 'employee_rating', 'manager_rating', 'studID')
 
+
 class SubSkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubSkill
