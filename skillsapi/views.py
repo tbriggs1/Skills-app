@@ -29,25 +29,9 @@ class SkillsViewSet(viewsets.ModelViewSet):
 
 class SubSkillsViewSet(viewsets.ModelViewSet):
 
-    @action(detail=True, methods=['POST'])
-    def rate_skill(self, request, pk=None):
-        if 'stars' in request.data:
-
-            subSkill = SubSkill.objects.get(id=pk)
-            stars = request.data['stars']
-            user = User.objects.get(id=1)
-            print('user', user.username)
-
-
-
-            response = {'message': 'you got the stars'}
-            return Response(response, status=status.HTTP_200_OK)
-        else:
-            response= {'message': 'You need to add a stars'}
-            return Response(response, status=status.HTTP_400_BAD_REQUEST)
-
     queryset = SubSkill.objects.all()
     serializer_class = SubSkillSerializer
+    filter_fields = ('title')
 
 
 
