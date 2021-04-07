@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from django.contrib.auth.models import User
-from .models import Skill, SubSkill
-from .serializers import SkillSerializer, SubSkillSerializer
+from .models import Skill, AdditionalSkill
+from .serializers import SkillSerializer, AdditionalSkillSerializer
 from rest_framework import generics
 import requests
 
@@ -27,13 +27,23 @@ class SkillsViewSet(viewsets.ModelViewSet):
     #         queryset = queryset.filter(studID=username)
     #     return queryset
 
-class SubSkillsViewSet(viewsets.ModelViewSet):
+# class SubSkillsViewSet(viewsets.ModelViewSet):
+#
+#     queryset = SubSkill.objects.all()
+#     serializer_class = SubSkillSerializer
+#     filter_fields = ('title')
 
-    queryset = SubSkill.objects.all()
-    serializer_class = SubSkillSerializer
-    filter_fields = ('title')
+class AdditionalSkillsViewSet(viewsets.ModelViewSet):
 
+    queryset = AdditionalSkill.objects.all()
+    serializer_class = AdditionalSkillSerializer
+    filter_fields = ('title', 'studID')
 
+# class EssentialSkillsViewSet(viewsets.ModelViewSet):
+#
+#     queryset = EssentialSkill.objects.all()
+#     serializer_class = EssentialSkillSerializer
+#     filter_fields = ('title', 'studID')
 
 
 def pokemon(request):
